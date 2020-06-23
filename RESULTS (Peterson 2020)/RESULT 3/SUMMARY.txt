@@ -1,0 +1,10 @@
+RATE FUNCTION:
+R_constant(event,R=1000)
+
+
+DEAD-TIME DISTRIBUTION:
+G_geometric(dfixed=0.5,murand=0.5) 
+
+
+OBSERVATION WINDOW:
+dt=0.1, t=[0, 5]
