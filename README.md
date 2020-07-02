@@ -1,7 +1,6 @@
 # Numerical computation of interval distributions
-MATLAB code for the paper "A numerical method for computing the interval 
-distribution of any inhomogeneous Poisson point process modified by dead times 
-drawn from any distribution".
+MATLAB code for the paper "A numerical method for computing interval distributions 
+for an inhomogeneous Poisson point process modified by random dead times".
 
 ------------------------------------------------------------------------------------
 Contents:
