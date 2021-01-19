@@ -3,6 +3,10 @@
 if ~exist([pwd, '\configure_method.m'], 'file')
     error('Please set MATLAB''s current folder to the one containing ''configure_method.m''.')
 end
+% Check if CODE folder seems to be in the MATLAB path
+if ~exist('execute_method.m','file')
+    error('Please add the CODE folder and its subfolders to the MATLAB path.')
+end
 
 % Set default graphics renderer ('painters' was used to generate the files in the paper)
 set(0, 'DefaultFigureRenderer', 'painters');
@@ -24,7 +28,7 @@ vars.settings.iPlotRecurrence = [1 10 20];                                      
 vars.settings.doDisplay = true;                                                    	% Specified whether to display text outputs to console 
 vars.settings.doCompare = true;                                                 	% Specifies whether to check results against the (much slower) algorithms implemented as in the paper
 vars.settings.TolCompare = 1e-10;                                                   % Specifies tolerance when comparing equality of numerical implementations
-vars.settings.doUseMEX = false;                                                     % Specifies whether Step 4 should use the MEX implementation (it's MUCH faster if the observation window has many points)
+vars.settings.doUseMEX = false;                                                     % Specifies whether Step 3 should use the MEX implementation (it's MUCH faster if the observation window has many points)
 
 % Settings related to observation window
 vars.window.dt = 0.1;                                                             	% Time step (in milliseconds)
@@ -50,5 +54,3 @@ vars = define_G(vars, @G_geometric, 'dfixed', 0.5, 'murand', 0.5);              
 
 % Run the model using the parameter set specified
 vars = execute_method(vars);
-
-

@@ -1,8 +1,20 @@
-/* File: xymult_quick.c                                            */
-/* Does a special multiply & summing from Answers question   */
-/* Programmer:  James Tursa                                  */
-/* Date: 4-Nov-2019                                          */
-/* Compile command:  mex -g xymult_quick.c -lmwblas -largeArrayDims  */
+/* NOTE:
+ * This file is based on code written by James Tursa and posted to MATLAB Answers:
+ * https://de.mathworks.com/matlabcentral/answers/489082-how-can-i-multiply-square-submatrices-more-efficiently
+ * It was modified by Adam J. Peterson, primarily to allow specification of the 
+ * number of points for which the result should be computed.
+ *
+ * According to the terms of use of MATLAB Central, all content posted to MATLAB 
+ * Answers is licensed under the Creative Commons Attribution Share Alike 3.0 license 
+ * (https://creativecommons.org/licenses/by-sa/3.0/legalcode). In accordance with 
+ * this license, the code within this file is distributed under the same license. 
+ */
+
+/* File: xymult_quick.c                                                 */
+/* Does a special multiply & summing from Answers question              */
+/* Programmer:  James Tursa                                             */
+/* Date: 4-Nov-2019                                                     */
+/* Compile command:  mex -g xymult_quick.c -lmwblas -largeArrayDims     */
 /* Includes ----------------------------------------------------------- */
 #include "mex.h"
 #include "blas.h"

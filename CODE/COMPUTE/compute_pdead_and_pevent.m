@@ -1,15 +1,25 @@
 function [pdead, pevent] = compute_pdead_and_pevent(t, pdetection, Sdead)
-    
-    pdead = zeros(size(t));
-    pevent = zeros(size(pdetection));
-    pevent(1) = pdetection(1);
 
-    % Compute pdead and limit its value to 1
-    for i=2:numel(pevent)
-        h = 1:i-1;
-        pdead(i) = sum(pdetection(h).*Sdead(i-h));
-    end
-    pdead = min(pdead, 1);
+    % Use conv() to compute pdead
+    pdead = conv(pdetection,Sdead,'full');
+    pdead(pdead>1) = 1;
+    pdead = [0 pdead(1:numel(t)-1)];
+
+%     % Equivalent (FFT-based convolution, similar to conv() in speed)
+%     x = pdetection;
+%     y = Sdead;
+%     X = fft([x zeros(1,length(y)-1)]);
+%     Y = fft([y zeros(1,length(x)-1)]);
+%     pdead = ifft(X.*Y);
+%     pdead = [0 min(pdead(1:numel(x)-1), 1)];
+    
+%     % Equivalent (slower than conv() when number of points is large)
+%     pdead = zeros(size(t));
+%     for i=2:numel(t)
+%         h = 1:i-1;
+%         pdead(i) = sum(pdetection(h).*Sdead(i-h));
+%     end
+%     pdead = min(pdead, 1);
 
     % Compute pevent
     pevent = pdetection./(1-pdead);

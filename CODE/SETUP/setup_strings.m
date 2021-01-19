@@ -31,7 +31,7 @@ function vars = setup_strings(vars)
     dirNames = {dirList.name};
     dirNums = cellfun(@(x) str2double(x(7:end)), dirNames, 'UniformOutput', false);
     newNum = max(cell2mat(dirNums))+1;
-    if isnan(newNum)
+    if isempty(newNum) || isnan(newNum)
         newNum = 1;
     end
     vars.strings.saveName = ['RESULT ' num2str(newNum)];
@@ -47,7 +47,12 @@ function vars = setup_strings(vars)
         'OBSERVATION WINDOW:' ...
         ['dt=', num2str(vars.window.dt), ', t=[', num2str(vars.window.tmin), ', ', num2str(vars.window.tmax), ']']};
 
-    % Construct save path and create directory
+    % Create root save directory if it does not exist
+    if ~exist(vars.settings.saveRoot, 'dir')
+        mkdir(vars.settings.saveRoot);
+    end
+
+    % Create current save directory and summary file
     vars.strings.savePath = [vars.settings.saveRoot '\' vars.strings.saveName '\'];
     if vars.settings.doSave && ~exist(vars.strings.savePath, 'dir')
         mkdir(vars.strings.savePath);

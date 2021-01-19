@@ -25,7 +25,7 @@ Contents:
      (i) "SIMULATIONS" directory includes code for simulating homogeneous and 
          inhomogeneous Poisson point processes and applying random dead times.
 
-(3) The "RESULTS (Peterson 2020)" directory contains figures and MAT files resulting
+(3) The "RESULTS (Peterson 2021)" directory contains figures and MAT files resulting
     for the three example point processes shown in the paper. Note that the
     simulation results shown are for different random realizations than those in the 
     paper, but they are equivalent.
